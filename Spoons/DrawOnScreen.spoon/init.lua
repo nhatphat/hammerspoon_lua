@@ -196,8 +196,9 @@ end
 -- =================
 --   default usage
 -- =================
-function module:defaultUsage()
-  local hotkey = hs.hotkey.modal.new({ 'ctrl', 'alt', 'cmd' }, 'a')
+function module:defaultUsage(config)
+  local hotkey = hs.hotkey.modal.new(config.allModifierKeys, 'a')
+  config.hyper:bind({}, 'a', function() hotkey:enter() end)
 
   local this = self
 
