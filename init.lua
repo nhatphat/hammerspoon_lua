@@ -23,3 +23,6 @@ hyper:bind({'cmd'}, 'C', hs.toggleConsole)
 
 drawOnScreen = hs.loadSpoon("DrawOnScreen")
 drawOnScreen:defaultUsage(config)
+
+appSwitcher = hs.loadSpoon("AppSwitcher")
+appSwitcher:start()
