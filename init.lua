@@ -1,5 +1,6 @@
--- remapping `capslock` to `F16` => https://developer.apple.com/library/archive/technotes/tn2450/_index.html#//apple_ref/doc/uid/DTS40017618-CH1-KEY_TABLE_USAGES
-hs.execute('hidutil property --set ' .. "'{" .. '"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x70000006B}]' .. "}'")
+-- https://developer.apple.com/library/archive/technotes/tn2450/_index.html#//apple_ref/doc/uid/DTS40017618-CH1-KEY_TABLE_USAGES
+-- remap key
+hs.execute('hidutil property --set "$(cat key.map)"')
 
 -- using `F16` as trigger key
 hyper = hs.hotkey.modal.new({}, 'F15')
@@ -9,6 +10,9 @@ config = {
     allModifierKeys = {'cmd', 'ctrl', 'alt', 'shift'},
     hyper = hyper
 }
+
+rightHotkey = require('right_modifier_key')
+config.rightHotkey = rightHotkey
 
 -- ========================
 --      global hot key
@@ -25,4 +29,7 @@ drawOnScreen = hs.loadSpoon("DrawOnScreen")
 drawOnScreen:defaultUsage(config)
 
 appSwitcher = hs.loadSpoon("AppSwitcher")
-appSwitcher:start()
+appSwitcher:start(config)
+
+windowSwitcher = hs.loadSpoon("WindowSwitcher")
+windowSwitcher:start()

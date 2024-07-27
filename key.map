@@ -1,0 +1,9 @@
+{
+    "UserKeyMapping": [
+        {
+            "HIDKeyboardModifierMappingSrc": 0x700000039,
+            "HIDKeyboardModifierMappingDst": 0x70000006B,
+            "note": "39: capslock -> 6B: F16",
+        }
+    ]
+}                                                                           

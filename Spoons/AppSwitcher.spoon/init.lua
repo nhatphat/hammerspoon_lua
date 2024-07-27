@@ -168,10 +168,10 @@ function AppSwitcher:hide()
   self.visible = false
 end
 
-function module:start()
+function module:start(config)
   local as = AppSwitcher:new {}
 
-  hs.hotkey.bind(
+  config.rightHotkey:bind(
     "option",
     "tab",
     function()
