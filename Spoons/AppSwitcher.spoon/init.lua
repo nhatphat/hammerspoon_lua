@@ -1,4 +1,4 @@
-module = {}
+local module = {}
 
 local App = dofile(hs.spoons.resourcePath("app.lua"))
 

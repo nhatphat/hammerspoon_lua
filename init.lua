@@ -18,12 +18,16 @@ config.rightHotkey = rightHotkey
 --      global hot key
 -- ========================
 
-hyper:bind({'cmd'}, 'R', hs.reload)
-hyper:bind({'cmd'}, 'C', hs.toggleConsole)
+hyper:bind({}, 'R', hs.reload)
+hyper:bind({}, 'C', hs.toggleConsole)
 
 -- ========================
 --      custom spoons
 -- ========================
+hs.console.clearConsole()
+
+myd = hs.loadSpoon("Myd")
+myd:sleepMenuBar()
 
 drawOnScreen = hs.loadSpoon("DrawOnScreen")
 drawOnScreen:defaultUsage(config)
@@ -33,3 +37,6 @@ appSwitcher:start(config)
 
 windowSwitcher = hs.loadSpoon("WindowSwitcher")
 windowSwitcher:start()
+
+dockAppNoti = hs.loadSpoon("DockAppNoti")
+dockAppNoti:start()

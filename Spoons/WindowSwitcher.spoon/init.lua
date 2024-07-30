@@ -1,4 +1,4 @@
-module = {}
+local module = {}
 
 function module:start()
     switcher = hs.window.switcher.new() -- default windowfilter: only visible windows, all Spaces
