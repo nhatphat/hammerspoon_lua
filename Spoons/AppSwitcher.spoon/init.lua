@@ -171,7 +171,8 @@ end
 function module:start(config)
   local as = AppSwitcher:new {}
 
-  config.rightHotkey:bind(
+  -- config.rightHotkey:bind(
+  hs.hotkey.bind(
     "option",
     "tab",
     function()

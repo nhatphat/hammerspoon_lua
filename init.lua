@@ -35,8 +35,8 @@ drawOnScreen:defaultUsage(config)
 appSwitcher = hs.loadSpoon("AppSwitcher")
 appSwitcher:start(config)
 
-windowSwitcher = hs.loadSpoon("WindowSwitcher")
-windowSwitcher:start()
+-- windowSwitcher = hs.loadSpoon("WindowSwitcher")
+-- windowSwitcher:start(config)
 
 dockAppNoti = hs.loadSpoon("DockAppNoti")
 dockAppNoti:start()
