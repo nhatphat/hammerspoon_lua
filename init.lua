@@ -42,3 +42,6 @@ appSwitcher:start(config)
 
 dockAppNoti = hs.loadSpoon("DockAppNoti")
 dockAppNoti:start()
+
+windowHalfsAndThirds = hs.loadSpoon("WindowHalfsAndThirds")
+windowHalfsAndThirds:defaultUsage(config)

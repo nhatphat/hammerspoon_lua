@@ -6,7 +6,7 @@ function module:startMoveMouse(config)
         local nextScreen = screen:next()
         local rect = nextScreen:fullFrame()
         local center = hs.geometry.rectMidPoint(rect)
-        hs.mouse.setAbsolutePosition(center)
+        hs.mouse.absolutePosition(center)
     end)
 end
 

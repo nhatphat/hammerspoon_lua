@@ -58,7 +58,12 @@ function module:showAppNotiOnMenuBar()
     local section = os.time(os.date("!*t"))
 
     for _, a in pairs(apps) do
-        local id = hs.application.find(a:attributeValue('AXTitle')):bundleID()
+        local application = hs.application.find(a:attributeValue('AXTitle'))
+        if application == nil then
+            goto continue
+        end
+
+        local id = application:bundleID()
         local badge = a:attributeValue('AXStatusLabel')
 
         if self.menubar[id] == nil then
@@ -83,6 +88,8 @@ function module:showAppNotiOnMenuBar()
             self.menubar[id] = nil
         end
     end
+
+    ::continue::
 end
 
 function module:start()
