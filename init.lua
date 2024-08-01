@@ -27,7 +27,9 @@ hyper:bind({}, 'C', hs.toggleConsole)
 hs.console.clearConsole()
 
 myd = hs.loadSpoon("Myd")
-myd:sleepMenuBar()
+myd.sleep:start()
+myd.mouseWindow:startMoveMouse(config)
+myd.mouseWindow:startMoveWindow(config)
 
 drawOnScreen = hs.loadSpoon("DrawOnScreen")
 drawOnScreen:defaultUsage(config)
