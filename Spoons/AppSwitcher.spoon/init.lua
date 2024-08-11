@@ -41,7 +41,7 @@ function AppSwitcher:new(o)
     end
   end
 
-  switcher.appsWatcher = hs.application.watcher.new(function(_, eventType, app)
+  switcher.appsWatcher = hs.application.watcher.new(function(appName, eventType, app)
     if app:kind() ~= 1 then
       return
     elseif eventType == hs.application.watcher.launching then
@@ -59,7 +59,7 @@ end
 function AppSwitcher:addApp(app)
   local id = app:bundleID()
 
-  if self.apps[id] ~= nil then
+  if id == nil or self.apps[id] ~= nil then
     return
   end
 
@@ -80,7 +80,7 @@ end
 function AppSwitcher:removeApp(app)
   local id = app:bundleID()
 
-  if self.apps[id] == nil then
+  if self.apps[id] == nil or self.apps[id].hsApp:pid() ~= app:pid() then
     return
   end
 
