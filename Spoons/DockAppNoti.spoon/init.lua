@@ -2,26 +2,30 @@ local module = {
     menubar = {},
 }
 
+getApplicationBadgeCount = function(bundleID)
+    return hs.execute("./Spoons/DockAppNoti.spoon/get_badge_count.sh " .. bundleID)
+end
+
 getApplicationDockItems = function()
-    local dock = hs.axuielement.applicationElement('Dock')
-    local dockItems = dock:attributeValue('AXChildren')[1]
+    local runningApps = hs.application.runningApplications()
 
     local apps = {}
 
-    for _, item in pairs(dockItems.AXChildren) do
-        local subrole = item.AXSubrole or ''
-        local badgeLabel = item:attributeValue('AXStatusLabel') or ''
-        if subrole == 'AXApplicationDockItem' and badgeLabel ~= '' then
-            table.insert(apps, item)
+    for _, app in pairs(runningApps) do
+        if app:kind() == 1 then
+            local badge = getApplicationBadgeCount(app:bundleID())
+            
+            if badge ~= '' then
+                table.insert(apps, {app = app, badge = badge})
+            end
         end
     end
 
     return apps
 end
 
-generateAppIconFromDockItem = function(item)
-    local id = hs.application.find(item:attributeValue('AXTitle')):bundleID()
-    local badge = item:attributeValue('AXStatusLabel')
+generateAppIconFromDockItem = function(item, badge)
+    local id = item:bundleID()
     local appIcon = hs.image.imageFromAppBundle(id)
 
     local iconSize = 15
@@ -54,17 +58,12 @@ generateAppIconFromDockItem = function(item)
 end
 
 function module:showAppNotiOnMenuBar()
-    local apps = getApplicationDockItems()
+    local items = getApplicationDockItems()
     local section = os.time(os.date("!*t"))
 
-    for _, a in pairs(apps) do
-        local application = hs.application.find(a:attributeValue('AXTitle'))
-        if application == nil then
-            goto continue
-        end
-
-        local id = application:bundleID()
-        local badge = a:attributeValue('AXStatusLabel')
+    for _, item in pairs(items) do
+        local id = item.app:bundleID()
+        local badge = item.badge
 
         if self.menubar[id] == nil then
             local menu = hs.menubar.new()
@@ -74,7 +73,7 @@ function module:showAppNotiOnMenuBar()
 
         if self.menubar[id].badge ~= badge then
             self.menubar[id].badge = badge
-            self.menubar[id].menu:setIcon(generateAppIconFromDockItem(a), false)
+            self.menubar[id].menu:setIcon(generateAppIconFromDockItem(item.app, badge), false)
         end
 
         -- assign new section for existed menubar's items
@@ -88,11 +87,10 @@ function module:showAppNotiOnMenuBar()
             self.menubar[id] = nil
         end
     end
-
-    ::continue::
 end
 
 function module:start()
+    hs.application.enableSpotlightForNameSearches(true)
     self:showAppNotiOnMenuBar()
     self.tm = hs.timer.doEvery(1.12, function() self:showAppNotiOnMenuBar() end)
 end

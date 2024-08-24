@@ -1,0 +1,1 @@
+lsappinfo -all info $1 | sed -n 's/.*"label"\s*=\s*"\([^"]*\)".*/\1/p' | tr -d '\n'
