@@ -12,8 +12,9 @@ getApplicationDockItems = function()
     local apps = {}
 
     for _, app in pairs(runningApps) do
-        if app:kind() == 1 then
-            local badge = getApplicationBadgeCount(app:bundleID())
+        local bundleID = app:bundleID()
+        if app:kind() == 1 and bundleID ~= nil then
+            local badge = getApplicationBadgeCount(bundleID)
             
             if badge ~= '' then
                 table.insert(apps, {app = app, badge = badge})
