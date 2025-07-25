@@ -30,6 +30,7 @@ myd = hs.loadSpoon("Myd")
 myd.sleep:start()
 myd.mouseWindow:startMoveMouse(config)
 myd.mouseWindow:startMoveWindow(config)
+myd.quick_binding_shortcuts:binding_shortcuts(config)
 
 drawOnScreen = hs.loadSpoon("DrawOnScreen")
 drawOnScreen:defaultUsage(config)
