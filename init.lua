@@ -36,8 +36,8 @@ myd.path_watcher:yaak()
 drawOnScreen = hs.loadSpoon("DrawOnScreen")
 drawOnScreen:defaultUsage(config)
 
-appSwitcher = hs.loadSpoon("AppSwitcher")
-appSwitcher:start(config)
+-- appSwitcher = hs.loadSpoon("AppSwitcher")
+-- appSwitcher:start(config)
 
 -- windowSwitcher = hs.loadSpoon("WindowSwitcher")
 -- windowSwitcher:start(config)
