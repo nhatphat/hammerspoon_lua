@@ -93,7 +93,7 @@ end
 function module:start()
     hs.application.enableSpotlightForNameSearches(true)
     self:showAppNotiOnMenuBar()
-    self.tm = hs.timer.doEvery(1.12, function() self:showAppNotiOnMenuBar() end)
+    self.tm = hs.timer.doEvery(5.12, function() self:showAppNotiOnMenuBar() end)
 end
 
 return module
