@@ -3,23 +3,27 @@
 hs.execute('hidutil property --set "$(cat key.map)"')
 
 -- using `F16` as trigger key
-hyper = hs.hotkey.modal.new({}, 'F15')
-hs.hotkey.bind({}, 'F16', function() hyper:enter() end, function() hyper:exit() end)
+hyper = hs.hotkey.modal.new({}, "F15")
+hs.hotkey.bind({}, "F16", function()
+	hyper:enter()
+end, function()
+	hyper:exit()
+end)
 
 config = {
-    allModifierKeys = {'cmd', 'ctrl', 'alt', 'shift'},
-    hyper = hyper
+	allModifierKeys = { "cmd", "ctrl", "alt", "shift" },
+	hyper = hyper,
 }
 
-rightHotkey = require('right_modifier_key')
+rightHotkey = require("right_modifier_key")
 config.rightHotkey = rightHotkey
 
 -- ========================
 --      global hot key
 -- ========================
 
-hyper:bind({}, 'R', hs.reload)
-hyper:bind({}, 'C', hs.toggleConsole)
+hyper:bind({}, "R", hs.reload)
+hyper:bind({}, "C", hs.toggleConsole)
 
 -- ========================
 --      custom spoons
@@ -47,3 +51,17 @@ dockAppNoti:start()
 
 windowHalfsAndThirds = hs.loadSpoon("WindowHalfsAndThirds")
 windowHalfsAndThirds:defaultUsage(config)
+
+windowDimmer = hs.loadSpoon("WindowDimmer")
+windowDimmer:defaultUsage(config)
+
+-- hs.window.highlight.ui.overlay = true
+-- hs.window.highlight.start()
+-- hs.window.highlight.ui.flashDuration = 0.3
+-- hs.window.highlight.ui.frameWidth = 10
+-- hs.window.highlight.ui.windowShownFlashColor = { 0, 0, 0, 0 }
+-- hs.window.highlight.ui.windowHiddenFlashColor = { 0, 0, 0, 0 }
+-- hs.window.highlight.ui.windowShownFlashColorInvert = { 0, 0, 0, 0 }
+-- hs.window.highlight.ui.windowHiddenFlashColorInvert = { 0, 0, 0, 0 }
+-- hs.window.highlight.ui.isolateColor = { 0, 0, 0, 0 }
+
