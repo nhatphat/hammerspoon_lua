@@ -65,3 +65,5 @@ windowDimmer:defaultUsage(config)
 -- hs.window.highlight.ui.windowHiddenFlashColorInvert = { 0, 0, 0, 0 }
 -- hs.window.highlight.ui.isolateColor = { 0, 0, 0, 0 }
 
+-- startup-tasks
+require("startup").setup()
